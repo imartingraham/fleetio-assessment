@@ -1,0 +1,85 @@
+version: "3.9"
+
+x-app: &app
+  build:
+    args:
+      RUBY_VERSION: "3.0.2"
+      PG_MAJOR: "12"
+      NODE_MAJOR: "16"
+      BUNDLER_VERSION: "2.2.16"
+    context: .
+  image: fleet-code:0.0.1
+  tmpfs:
+    - /tmp
+
+x-backend: &backend
+  <<: *app
+  depends_on:
+    postgres:
+      condition: service_healthy
+  environment:
+    - BOOTSNAP_CACHE_DIR=/usr/local/bundle/_bootsnap
+    - DATABASE_URL=postgres://postgres:password@postgres:5432
+    - EDITOR=vi
+    - HISTFILE=/fleet-code/log/.bash_history
+    - NODE_ENV=development
+    - PSQL_HISTFILE=/fleet-code/log/.psql_history
+    - RAILS_ENV=${RAILS_ENV:-development}
+    - REDIS_URL=redis://redis:6379/
+    - WEBPACKER_DEV_SERVER_HOST=webpacker
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/fleet-code:cached
+    - rails_cache:/fleet-code/tmp/cache
+    - bundle:/usr/local/bundle
+    - node_modules:/fleet-code/node_modules
+    - packs:/fleet-code/public/packs
+
+services:
+  rails:
+    <<: *backend
+    command: bin/rails server -b 0.0.0.0
+    ports:
+      - '3000:3000'
+
+  runner:
+    <<: *backend
+    command: /bin/bash
+
+  webpacker:
+    <<: *app
+    command: ./bin/webpack-dev-server
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+    ports:
+      - '3035:3035'
+    volumes:
+      - .:/fleet-code:cached
+      - bundle:/usr/local/bundle
+      - node_modules:/fleet-code/node_modules
+      - packs:/fleet-code/public/packs
+
+  postgres:
+    image: postgres:12.6-alpine
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 5s
+    environment:
+      - PSQL_HISTFILE=/root/log/.psql_history
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432
+    volumes:
+      - ./log:/root/.psqlrc:ro
+      - postgres:/var/lib/postgresql/data
+      - ./log:/root/log:cached
+
+volumes:
+  bundle:
+  node_modules:
+  packs:
+  postgres:
+  rails_cache:
