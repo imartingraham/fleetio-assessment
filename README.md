@@ -28,7 +28,7 @@ that queries the [Fleetio API](https://developer.fleetio.com) for vehicles.
     $ docker compose up
     ```
 
-6. When you have completed your assessment, open a PR with your changes against your own local fork (not the fleetio/fleetio-web-assessment base repository), then add @jorgevaldivia, @senthil0101, @hamfz, @philcoggins, @hpjaj, and @ryoung as collaborators to the repository for review.
+6. When you have completed your assessment, open a PR with your changes against your own local fork (not the fleetio/fleetio-web-assessment base repository), then add @jorgevaldivia, @senthil0101, @hamfz, @philcoggins, @hpjaj, @ryoung, and @aloftin as collaborators to the repository for review.
 
 ## Instructions
 
