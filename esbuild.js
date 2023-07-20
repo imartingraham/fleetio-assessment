@@ -64,22 +64,6 @@ const buildConfig = {
   publicPath: '/assets',
   plugins: [
     postCssPlugin(require('./postcss.config')),
-    // sassPlugin.sassPlugin({
-    //   cssImports: false,
-    //   loadPaths: ['app/client/', 'node_modules/'],
-    //   async transform(source) {
-    //     const { css } = await postcss([
-    //       autoprefixer,
-    //       tailwindConfig,
-    //       postCssFlexbugFixes,
-    //       postcssPresetEnv({
-    //         stage: 3
-    //       })
-    //     ]).process(source, { from: undefined })
-    //     return css
-    //   }
-    // }),
-    // postcss,
     customPlugins.alienfastI18nPlugin(),
     ImportGlobPlugin.default(),
     customPlugins.svgrPlugin({
@@ -109,15 +93,17 @@ const buildConfig = {
 // watch script via chokida OR just esbuild
 if (shouldWatch) {
   const watchedDirectories = [
-    "./app/client/typescript/**/*.js",
-    "./app/client/typescript/**/*.json",
-    "./app/client/typescript/**/*.jsx",
-    "./app/client/typescript/**/*.ts",
-    "./app/client/typescript/**/*.tsx",
-    "./app/client/typescript/**/*.css",
-    "./app/client/stylesheets/**/*.css",
-    "./app/client/stylesheets/**/*.scss",
-    "./app/client/packs/**/**.*"
+    './app/client/**/*.{js,jsx,ts,tsx,vue,css,scss,json}',
+    // "./app/client/**/"
+    // "./app/client/javascript/**/*.js",
+    // "./app/client/typescript/**/*.json",
+    // "./app/client/javascript/**/*.jsx",
+    // "./app/client/typescript/**/*.ts",
+    // "./app/client/typescript/**/*.tsx",
+    // "./app/client/typescript/**/*.css",
+    // "./app/client/stylesheets/**/*.css",
+    // "./app/client/stylesheets/**/*.scss",
+    // "./app/client/packs/**/**.*"
   ]
 
   http
