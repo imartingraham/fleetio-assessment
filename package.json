@@ -7,6 +7,7 @@
   "dependencies": {
     "@alienfast/i18next-loader": "^2.0.1",
     "@babel/preset-react": "^7.13.13",
+    "@deanc/esbuild-plugin-postcss": "^1.0.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@svgr/core": "^8.0.0",
@@ -18,7 +19,9 @@
     "esbuild": "^0.18.15",
     "esbuild-plugin-import-glob": "^0.1.1",
     "esbuild-sass-plugin": "^2.10.0",
+    "glob": "^10.3.3",
     "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
     "postcss-preset-env": "^9.0.0",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",

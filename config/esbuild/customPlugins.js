@@ -51,7 +51,7 @@ function cleanup(options = {}) {
   return {
     name: 'esbuild:cleanup',
     setup(build) {
-      const glob = require('glob')
+      const { glob } = require('glob')
       const fs = require('fs')
       const path = require('path')
 

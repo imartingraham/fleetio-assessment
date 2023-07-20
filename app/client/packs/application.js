@@ -1,7 +1,6 @@
 // Entrypoint for ESBuild
 
 if (process.env.NODE_ENV === 'development') {
-  console.log('is dev')
   const esbuildUpdateServerPort = process.env.ESBUILD_UPDATE_SERVER_PORT || '3035'
   ;(() =>
     (new EventSource(`http://localhost:${esbuildUpdateServerPort}`).onmessage = () =>

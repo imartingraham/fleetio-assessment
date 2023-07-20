@@ -6,7 +6,8 @@ const chokidar = require ('chokidar')
 const esbuild = require('esbuild')
 const http = require('http')
 const autoprefixer = require('autoprefixer')
-const postcss = require('postcss')
+// const postcss = require('postcss')
+const postCssPlugin = require('@deanc/esbuild-plugin-postcss')
 const postCssFlexbugFixes = require('postcss-flexbugs-fixes')
 const postcssPresetEnv = require('postcss-preset-env')
 const tailwindConfig = require('tailwindcss')(
@@ -62,21 +63,23 @@ const buildConfig = {
   outdir: 'app/assets/builds',
   publicPath: '/assets',
   plugins: [
-    sassPlugin.sassPlugin({
-      cssImports: true,
-      loadPaths: ['app/client/', 'node_modules/'],
-      async transform(source) {
-        const { css } = await postcss([
-          autoprefixer,
-          tailwindConfig,
-          postCssFlexbugFixes,
-          postcssPresetEnv({
-            stage: 3
-          })
-        ]).process(source, { from: undefined })
-        return css
-      }
-    }),
+    postCssPlugin(require('./postcss.config')),
+    // sassPlugin.sassPlugin({
+    //   cssImports: false,
+    //   loadPaths: ['app/client/', 'node_modules/'],
+    //   async transform(source) {
+    //     const { css } = await postcss([
+    //       autoprefixer,
+    //       tailwindConfig,
+    //       postCssFlexbugFixes,
+    //       postcssPresetEnv({
+    //         stage: 3
+    //       })
+    //     ]).process(source, { from: undefined })
+    //     return css
+    //   }
+    // }),
+    // postcss,
     customPlugins.alienfastI18nPlugin(),
     ImportGlobPlugin.default(),
     customPlugins.svgrPlugin({
