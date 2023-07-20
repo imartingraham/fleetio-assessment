@@ -93,17 +93,8 @@ const buildConfig = {
 // watch script via chokida OR just esbuild
 if (shouldWatch) {
   const watchedDirectories = [
-    './app/client/**/*.{js,jsx,ts,tsx,vue,css,scss,json}',
-    // "./app/client/**/"
-    // "./app/client/javascript/**/*.js",
-    // "./app/client/typescript/**/*.json",
-    // "./app/client/javascript/**/*.jsx",
-    // "./app/client/typescript/**/*.ts",
-    // "./app/client/typescript/**/*.tsx",
-    // "./app/client/typescript/**/*.css",
-    // "./app/client/stylesheets/**/*.css",
-    // "./app/client/stylesheets/**/*.scss",
-    // "./app/client/packs/**/**.*"
+    './app/client/**/*.{js,jsx,ts,tsx,css,scss,json}',
+    "./app/client/packs/**/**.*"
   ]
 
   http
