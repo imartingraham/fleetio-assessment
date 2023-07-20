@@ -1,5 +1,5 @@
 ARG RUBY_VERSION
-FROM ruby:$RUBY_VERSION-slim-buster AS build
+FROM ruby:$RUBY_VERSION-slim-bullseye AS build
 
 ARG PG_MAJOR
 ARG NODE_MAJOR
