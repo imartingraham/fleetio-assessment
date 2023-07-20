@@ -1,19 +1,19 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.2"
+ruby "3.2.1"
 
 gem "bootsnap", ">= 1.4.4", require: false
 gem "http", "~> 5.0"
 gem "jbuilder", "~> 2.7"
-gem "pg", "~> 1.1"
+gem "jsbundling-rails", "~> 1.1.2"
+gem "pg", "~> 1.5.3"
 gem "puma", "~> 5.3"
-gem "rails", "~> 7.0.3.1"
+gem "rails", "~> 7.0.5"
 gem "redis", "~> 4.0"
 gem "sidekiq", "~> 6.2", ">= 6.2.1"
 gem "sprockets", "4.1.1"
 gem "sprockets-rails", "~> 3.2.2"
-gem "webpacker", "~> 5.0"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]

@@ -3,10 +3,10 @@ version: "3.9"
 x-app: &app
   build:
     args:
-      RUBY_VERSION: "3.0.2"
+      RUBY_VERSION: "3.2.1"
       PG_MAJOR: "12"
-      NODE_MAJOR: "16"
-      BUNDLER_VERSION: "2.2.16"
+      NODE_MAJOR: "18"
+      BUNDLER_VERSION: "2.2.22"
     context: .
   image: fleet-code:0.0.1
   tmpfs:
@@ -47,13 +47,12 @@ services:
     <<: *backend
     command: /bin/bash
 
-  webpacker:
+  esbuild:
     <<: *app
-    command: ./bin/webpack-dev-server
+    command: yarn build --watch
     environment:
       - NODE_ENV=${NODE_ENV:-development}
       - RAILS_ENV=${RAILS_ENV:-development}
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     ports:
       - '3035:3035'
     volumes:
@@ -61,6 +60,21 @@ services:
       - bundle:/usr/local/bundle
       - node_modules:/fleet-code/node_modules
       - packs:/fleet-code/public/packs
+
+#  webpacker:
+#    <<: *app
+#    command: ./bin/webpack-dev-server
+#    environment:
+#      - NODE_ENV=${NODE_ENV:-development}
+#      - RAILS_ENV=${RAILS_ENV:-development}
+#      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+#    ports:
+#      - '3035:3035'
+#    volumes:
+#      - .:/fleet-code:cached
+#      - bundle:/usr/local/bundle
+#      - node_modules:/fleet-code/node_modules
+#      - packs:/fleet-code/public/packs
 
   postgres:
     image: postgres:12.6-alpine
