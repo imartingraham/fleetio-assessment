@@ -26,7 +26,6 @@ x-backend: &backend
     - PSQL_HISTFILE=/fleet-code/log/.psql_history
     - RAILS_ENV=${RAILS_ENV:-development}
     - REDIS_URL=redis://redis:6379/
-    - WEBPACKER_DEV_SERVER_HOST=webpacker
   stdin_open: true
   tty: true
   volumes:
@@ -60,21 +59,6 @@ services:
       - bundle:/usr/local/bundle
       - node_modules:/fleet-code/node_modules
       - packs:/fleet-code/public/packs
-
-#  webpacker:
-#    <<: *app
-#    command: ./bin/webpack-dev-server
-#    environment:
-#      - NODE_ENV=${NODE_ENV:-development}
-#      - RAILS_ENV=${RAILS_ENV:-development}
-#      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
-#    ports:
-#      - '3035:3035'
-#    volumes:
-#      - .:/fleet-code:cached
-#      - bundle:/usr/local/bundle
-#      - node_modules:/fleet-code/node_modules
-#      - packs:/fleet-code/public/packs
 
   postgres:
     image: postgres:12.6-alpine
