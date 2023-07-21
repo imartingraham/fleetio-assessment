@@ -93,7 +93,7 @@ const buildConfig = {
 // watch script via chokida OR just esbuild
 if (shouldWatch) {
   const watchedDirectories = [
-    './app/client/**/*.{js,jsx,ts,tsx,css,scss,json}',
+    "./app/client/**/*.{js,jsx,ts,tsx,css,scss,json}",
     "./app/client/packs/**/**.*"
   ]
 
