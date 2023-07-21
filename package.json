@@ -8,8 +8,6 @@
     "@alienfast/i18next-loader": "^2.0.1",
     "@babel/preset-react": "^7.13.13",
     "@deanc/esbuild-plugin-postcss": "^1.0.2",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
     "@svgr/core": "^8.0.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
