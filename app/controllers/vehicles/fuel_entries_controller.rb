@@ -14,8 +14,8 @@ module Vehicles
         }
       ).parse
 
-      usage = fuel_entries.sum { |fuel_entry| fuel_entry["usage_in_mi"] }
-      gallons = fuel_entries.sum { |fuel_entry| fuel_entry["us_gallons"] }
+      usage = fuel_entries.sum(0) { |fuel_entry| fuel_entry["usage_in_mi"] }
+      gallons = fuel_entries.sum(0) { |fuel_entry| fuel_entry["us_gallons"] }
 
       render json: { efficiency: usage.to_f / gallons }
     end
