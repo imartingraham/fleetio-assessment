@@ -1,6 +1,6 @@
 import React from "react";
 
-const SkeletonCard = () => (
+export const SkeletonCard = () => (
   <div className="max-w-sm w-full mx-auto">
     <div className="flex space-x-4 animate-pulse">
       <div className="flex-1 space-y-2 py-1">
@@ -10,6 +10,4 @@ const SkeletonCard = () => (
       </div>
     </div>
   </div>
-);
-
-export default SkeletonCard;
+)

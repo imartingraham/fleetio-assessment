@@ -1,7 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const Header = ({ imgSrc, headerText }) => (
+interface HeaderProps {
+  imgSrc: string
+  headerText: string
+}
+
+export const Header = ({ imgSrc, headerText }: HeaderProps) => (
   <div className="flex justify-center align-center py-8 md:py-12">
     <img src={imgSrc} alt={headerText} className="h-8 w-auto sm:h-10" />
 
@@ -9,11 +13,4 @@ const Header = ({ imgSrc, headerText }) => (
       {headerText}
     </h1>
   </div>
-);
-
-Header.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  headerText: PropTypes.string.isRequired,
-};
-
-export default Header;
+)

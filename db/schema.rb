@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[6.1].define(version: 2021_04_27_174547) do
+ActiveRecord::Schema[7.0].define(version: 2021_04_27_174547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +19,9 @@ ActiveRecord::Schema[6.1].define(version: 2021_04_27_174547) do
     t.string "image_url"
     t.string "category"
     t.integer "external_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["external_id"], name: "index_vehicles_on_external_id", unique: true
   end
+
 end

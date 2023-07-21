@@ -1,29 +1,37 @@
 {
   "name": "fleet-code",
   "private": true,
+  "scripts": {
+    "build": "node esbuild.js"
+  },
   "dependencies": {
-    "@babel/preset-react": "^7.13.13",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.4.3",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@alienfast/i18next-loader": "^2.0.1",
+    "@deanc/esbuild-plugin-postcss": "^1.0.2",
+    "@svgr/core": "^8.0.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.18.15",
+    "esbuild-plugin-import-glob": "^0.1.1",
+    "esbuild-sass-plugin": "^2.10.0",
+    "glob": "^10.3.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hot-toast": "^1.0.2",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.1.6"
   },
   "version": "0.1.0",
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/postcss7-compat": "^2.1.0",
-    "@webpack-cli/serve": "^1.6.0",
-    "autoprefixer": "^9",
+    "autoprefixer": "^10.4.14",
     "browserslist": "^4.17.6",
-    "postcss": "^7",
-    "prettier": "^2.2.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "webpack-dev-server": "^3"
+    "postcss": "^8.4.26",
+    "prettier": "^2.2.1"
   }
 }

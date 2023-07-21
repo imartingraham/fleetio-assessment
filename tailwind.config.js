@@ -1,13 +1,12 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: [
+    './app/client/**/*.{js,jsx,ts,tsx,vue}',
+    './app/views/devise/sessions/new.html.slim',
+    './app/views/shared/alerts/_admin_navbar.html.slim'
+  ],
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {
-      opacity: ["disabled"],
-    },
-  },
-  plugins: [require("@tailwindcss/aspect-ratio")],
-};
+  plugins: [],
+}

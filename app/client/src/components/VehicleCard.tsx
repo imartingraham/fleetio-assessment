@@ -1,15 +1,19 @@
-import React, { useCallback, useState } from "react";
-import PropTypes from "prop-types";
-import toast from "react-hot-toast";
+import React, { useCallback, useState } from "react"
+import toast from "react-hot-toast"
 
-import Button from "../ui/Button";
+import { Button } from "../ui/Button"
+import { Vehicle } from "../types/models/Vehicle"
 
 const cardItemSize = {
   width: 315,
   height: 192
 }
 
-const VehicleCard = ({ vehicle }) => {
+interface VehicleCardProps {
+  vehicle: Vehicle
+}
+
+export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const [loading, setLoading] = useState(false);
   const [efficiency, setEfficiency] = useState();
 
@@ -19,14 +23,14 @@ const VehicleCard = ({ vehicle }) => {
     fetch(`/vehicles/${vehicle.external_id}/fuel_entries`)
       .then((response) => response.json())
       .then((data) => {
-        setEfficiency(data.efficiency.toFixed(2));
-        setLoading(false);
+        setEfficiency(data.efficiency.toFixed(2))
+        setLoading(false)
       })
       .catch(() => {
-        toast.error("Oops, something went wrong!");
-        setLoading(false);
-      });
-  }, [vehicle]);
+        toast.error("Oops, something went wrong!")
+        setLoading(false)
+      })
+  }, [vehicle])
 
   return (
     <li className="relative" style={{ maxWidth: cardItemSize.width }}>
@@ -83,11 +87,5 @@ const VehicleCard = ({ vehicle }) => {
         )}
       </div>
     </li>
-  );
-};
-
-VehicleCard.propTypes = {
-  vehicle: PropTypes.object.isRequired,
-};
-
-export default VehicleCard;
+  )
+}

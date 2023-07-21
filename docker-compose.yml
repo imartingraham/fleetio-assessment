@@ -3,10 +3,10 @@ version: "3.9"
 x-app: &app
   build:
     args:
-      RUBY_VERSION: "3.0.2"
+      RUBY_VERSION: "3.2.1"
       PG_MAJOR: "12"
-      NODE_MAJOR: "16"
-      BUNDLER_VERSION: "2.2.16"
+      NODE_MAJOR: "18"
+      BUNDLER_VERSION: "2.2.22"
     context: .
   image: fleet-code:0.0.1
   tmpfs:
@@ -26,7 +26,6 @@ x-backend: &backend
     - PSQL_HISTFILE=/fleet-code/log/.psql_history
     - RAILS_ENV=${RAILS_ENV:-development}
     - REDIS_URL=redis://redis:6379/
-    - WEBPACKER_DEV_SERVER_HOST=webpacker
   stdin_open: true
   tty: true
   volumes:
@@ -47,13 +46,12 @@ services:
     <<: *backend
     command: /bin/bash
 
-  webpacker:
+  esbuild:
     <<: *app
-    command: ./bin/webpack-dev-server
+    command: yarn build --watch
     environment:
       - NODE_ENV=${NODE_ENV:-development}
       - RAILS_ENV=${RAILS_ENV:-development}
-      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
     ports:
       - '3035:3035'
     volumes:

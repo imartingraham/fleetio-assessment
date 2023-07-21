@@ -17,7 +17,7 @@ that queries the [Fleetio API](https://developer.fleetio.com) for vehicles.
 
    ```bash
    $ bin/rails server
-   $ bin/webpack-dev-server
+   $ yarn build --watch
    ```
 
 5. Alternatively, you can use Docker to setup and run the application:
