@@ -8,12 +8,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Load main App.jsx tree
-    import(`../typescript/app/App`)
-      .then(({default: App}) => {
-      })
+  // Load main App tree
+    import(`../src/App`)
+      .then(({default: App}) => {}) // does nothing right now as the App injects itself into the DOM when it's loaded
       .catch((error) => {
         console.error(`An error occurred while loading the component: ${error}`) // eslint-disable-line no-console
       })
-  // }
 })
