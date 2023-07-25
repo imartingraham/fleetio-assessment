@@ -21,14 +21,22 @@
    `category`. You're welcome to perform the grouping on the Rails-side or the
    React-side. The final product should look something like the screenshot below.
 
-6. Refactor the `VehicleCard` component to make use of a more generic underlying
+## Additional Requirements
+Add one or more of the following features depending on directions from recruiter/hiring manager:
+
+A. When a visitor lands on the application for the first time, display a modal highlighting the vehicle with the lowest MPG along with some type of
+   "notice" or "warning" message. This modal should not show more than once for a given visitor.
+
+B. Refactor the `VehicleCard` component to make use of a more generic underlying
    `Card` component.
 
-## Bonus
+C. The vehicles in this project are seeded with data from the [Fleetio API](https://developer.fleetio.com/docs/api/v-1-vehicles-index). Using the API documentation, identify some additional key
+  attributes to collect and display to the user. Allow the user to select a vehicle tile, upon selection they should be linked to a vehicle profile page that displays these new vehicle attributes.
+  The user should be able to navigate back to the original list page.
 
-1. On the Rails-side, parse the Fleetio API and turn the hashes into objects.
+D. Using the Fleetio [Meter Entry API](https://developer.fleetio.com/docs/api/v-1-vehicles-meter-entries), create a process to sync meter history nightly for each vehicle in the database. Create a new controller that returns this history for a given vehicle via a JSON request. Any voided meters should not be persisted. Note, you may find the filtering/sorting API useful (https://developer.fleetio.com/docs/guides/filtering-and-sorting/constructing-filters-and-sorts) for this.
 
-2. On the front-end, persist the most recently fetched Vehicle data to local
-   storage and hydrate the app state from local storage on a fresh page load.
+E. Add a simple "Search form" to the top of the vehicle listing page. When submitted, the app should query the vehicle controller and only return vehicles whose name contains the search string. Update the list view accordingly depending on the results.
 
    ![FINAL](../.github/final.png)
+ 
