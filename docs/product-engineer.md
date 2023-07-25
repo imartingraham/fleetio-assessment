@@ -24,19 +24,18 @@
 ## Additional Requirements
 Add one or more of the following features depending on directions from recruiter/hiring manager:
 
-A. When a visitor lands on the application for the first time, pop up a modal highlighting the vehicle with the lowest MPG and along with some type of
-   "notice" or "warning" message. This modal should not pop up more than once for a given user.
+A. When a visitor lands on the application for the first time, display a modal highlighting the vehicle with the lowest MPG along with some type of
+   "notice" or "warning" message. This modal should not show more than once for a given visitor.
 
 B. Refactor the `VehicleCard` component to make use of a more generic underlying
    `Card` component.
 
-C. The vehicles in this project are seeded with data from the [Fleetio API](https://developer.fleetio.com/docs/api/v-1-vehicles-index). Using the API documentation, identify some more key
-  attributes of the vehicle to collect and display to the user. Allow the user to select a vehicle tile, upon selection they should be linked to a vehicle profile page that displays these new vehicle attributes.
+C. The vehicles in this project are seeded with data from the [Fleetio API](https://developer.fleetio.com/docs/api/v-1-vehicles-index). Using the API documentation, identify some additional key
+  attributes to collect and display to the user. Allow the user to select a vehicle tile, upon selection they should be linked to a vehicle profile page that displays these new vehicle attributes.
   The user should be able to navigate back to the original list page.
 
-D. Using the Fleetio [Meter Entry API](https://developer.fleetio.com/docs/api/v-1-meter-entries-index), create a process to collect and store meter history for each vehicle. Create a new controller that returns this history for a given vehicle. Any voided meters should not be persisted. When a user clicks on a vehicle tile, pop up a simple modal that loads and lists the meter history. Note, you may find the filtering/sorting API useful (https://developer.fleetio.com/docs/guides/filtering-and-sorting/constructing-filters-and-sorts) for this.
+D. Using the Fleetio [Meter Entry API](https://developer.fleetio.com/docs/api/v-1-meter-entries-index), create a process to collect and store meter history for each vehicle. Create a new controller that returns this history for a given vehicle. Any voided meters should not be persisted. When a user clicks on a vehicle tile, display a simple modal that loads and lists the meter history. Note, you may find the filtering/sorting API useful (https://developer.fleetio.com/docs/guides/filtering-and-sorting/constructing-filters-and-sorts) for this.
 
-E. Add a simple "Search form" to the top of the vehicle listing page. When submitted, the app should query the vehicle controller and only return vehicles who's name contains the search string. Update the list view accordingly depending on the results.
-
+E. Add a simple "Search form" to the top of the vehicle listing page. When submitted, the app should query the vehicle controller and only return vehicles whose name contains the search string. Update the list view accordingly depending on the results.
 
    ![FINAL](../.github/final.png)
