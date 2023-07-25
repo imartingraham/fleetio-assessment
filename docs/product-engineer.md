@@ -34,8 +34,9 @@ C. The vehicles in this project are seeded with data from the [Fleetio API](http
   attributes to collect and display to the user. Allow the user to select a vehicle tile, upon selection they should be linked to a vehicle profile page that displays these new vehicle attributes.
   The user should be able to navigate back to the original list page.
 
-D. Using the Fleetio [Meter Entry API](https://developer.fleetio.com/docs/api/v-1-meter-entries-index), create a process to collect and store meter history for each vehicle. Create a new controller that returns this history for a given vehicle. Any voided meters should not be persisted. When a user clicks on a vehicle tile, display a simple modal that loads and lists the meter history. Note, you may find the filtering/sorting API useful (https://developer.fleetio.com/docs/guides/filtering-and-sorting/constructing-filters-and-sorts) for this.
+D. Using the Fleetio [Meter Entry API](https://developer.fleetio.com/docs/api/v-1-vehicles-meter-entries), create a process to sync meter history nightly for each vehicle in the database. Create a new controller that returns this history for a given vehicle via a JSON request. Any voided meters should not be persisted. Note, you may find the filtering/sorting API useful (https://developer.fleetio.com/docs/guides/filtering-and-sorting/constructing-filters-and-sorts) for this.
 
 E. Add a simple "Search form" to the top of the vehicle listing page. When submitted, the app should query the vehicle controller and only return vehicles whose name contains the search string. Update the list view accordingly depending on the results.
 
    ![FINAL](../.github/final.png)
+ 
