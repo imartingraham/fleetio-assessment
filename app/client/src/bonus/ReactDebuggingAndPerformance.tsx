@@ -18,28 +18,35 @@
  */
 
 
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import { Button } from "../ui/Button";
 import { SubHeader } from "../ui/SubHeader";
 import {DebuggingVehicle, fetchVehicles} from "./getVehicles";
+import {useDebouncedFn} from "../hooks/useDebouncedFn";
 
 interface TopMileageVehiclesProps {
   data: DebuggingVehicle[]
 }
 
+/**
+ * Implement windowing on the top 10,000 vehicles list here.
+ */
 function TopMileageVehicles({ data }: TopMileageVehiclesProps) {
   return (
     <div>
       <div className="text-xl font-bold mb-2">
-        Top 50 vehicles by mileage:
+        Top 10,000 vehicles by mileage:
       </div>
-      {
-        data.sort((a, b) => b.miles - a.miles).slice(0, 50).map((v) => (
-          <div key={v.id}>
-            Id = {v.id} <span className="pl-2">Miles {v.miles}</span>
-          </div>
-        ))
-      }
+      <div className="max-h-64 rounded border border-gray-400 overflow-auto divide-y divide-solid divide-gray-500 font-medium">
+        {
+          data.sort((a, b) => b.miles - a.miles).slice(0, 10_000).map((v) => (
+            <div key={v.id} className="px-2 py-1 flex justify-around">
+              <div>Id = {v.id}</div>
+              <div>Miles {v.miles}</div>
+            </div>
+          ))
+        }
+      </div>
     </div>
   )
 }
@@ -58,8 +65,8 @@ function InternalReactDebuggingAndPerformance(props: ReactDebuggingAndPerformanc
       <div>
         <Button onClick={loadNewData}>Load new data</Button>
       </div>
-      <div>Number of records: {data.length}</div>
-      <div className="">Sum of mileage: {totalMileage}</div>
+      <div>Number of records: {data.length.toLocaleString()}</div>
+      <div className="">Sum of mileage: {totalMileage.toLocaleString()}</div>
       <TopMileageVehicles data={data} />
     </div>
   )
@@ -75,7 +82,8 @@ const bgColors = {
 
 /**
  * General wrapper to provide various functionality.
- * 1. The counter shouldn't take so long to render the incrementation.
+ *
+ * This page is laggy when changes occur. Why?
  */
 export function ReactDebuggingAndPerformance() {
   const [per, setPer] = useState(5_000_000)
@@ -89,23 +97,26 @@ export function ReactDebuggingAndPerformance() {
     retrieveVehicles()
   }, [per])
 
-  const [counter, setCounter] = useState<number>(0)
+  // contrived for rerenders in the parent
+  const colorRef = useRef(0)
+  const [bgColor, setBgColor] = useState<string>(bgColors[0])
+  const updateColor = useDebouncedFn(() => {
+    colorRef.current = colorRef.current + 1
+    // @ts-ignore
+    setBgColor(bgColors[colorRef.current % 5])
+  }, 30_000)
+  useEffect(() => {
+    updateColor()
+  }, [bgColor]);
+
   return (
     <div>
-      <SubHeader content="Debugging and Performance" />
-
-      <div className="flex justify-center">
-        {/* @ts-ignore */}
-        <div className={`${bgColors[counter % 5]} p-4 rounded m-8 inline-block w-1/6 mx-auto`}>
-          <Button
-            className="w-full h-full"
-            onClick={() => setCounter((i) => i + 1)}
-          >
-            Increment {counter}. Why does this take so long?
-          </Button>
-        </div>
-      </div>
-
+      <SubHeader content={
+          <div className={`${bgColor} mb-4`}>
+            Debugging and Performance
+          </div>
+        }
+      />
       <div className="flex items-center gap-2">
         <label>Num Vehicles to Retrieve</label>
         <input
