@@ -1,50 +1,3 @@
-const fs = require("fs");
-const path = require("path");
-
-function alienfastI18nPlugin() {
-  return {
-    name: 'alienfast',
-    setup(build) {
-      const alienfastLoader = require('@alienfast/i18next-loader')
-      const query = '?{basenameAsNamespace:true, relativePathAsNamespace: true}'
-
-      build.onLoad({ filter: /\/locales\/index.js$/ }, async (args) => {
-        const contents = await alienfastLoader.call({
-          query,
-          resource: args.path,
-          addContextDependency: () => {},
-          addDependency: () => {}
-        })
-
-        return {
-          contents,
-          loader: 'js'
-        }
-      })
-    }
-  }
-}
-
-/// CUSTOM SVGR PLUGIN -> SEE https://github.com/kazijawad/esbuild-plugin-svgr
-function svgrPlugin(options = {}) {
-  return {
-    name: 'svgr',
-    setup(build) {
-      const svgr = require('@svgr/core').transform
-      const fs = require('fs')
-
-      build.onLoad({ filter: /\/fleeticons\/.*\.svg$/ }, async (args) => {
-        const svg = await fs.promises.readFile(args.path, 'utf8')
-        const contents = await svgr(svg, { ...options }, { filePath: args.path })
-        return {
-          contents,
-          loader: options.typescript ? 'tsx' : 'jsx'
-        }
-      })
-    }
-  }
-}
-
 // CUSTOM CLEANUP PLUGIN -> SEE https://blog.arkency.com/tune-up-your-esbuild-config-with-plugins-and-cleanup-your-assets-directory/
 function cleanup(options = {}) {
   const { pattern = '*', safelist = [], debug = false } = options
@@ -98,6 +51,4 @@ function cleanup(options = {}) {
   }
 }
 
-exports.alienfastI18nPlugin = alienfastI18nPlugin
 exports.cleanup = cleanup
-exports.svgrPlugin = svgrPlugin

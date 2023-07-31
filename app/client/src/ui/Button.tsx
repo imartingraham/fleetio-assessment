@@ -19,13 +19,19 @@ const ButtonThemes = {
         ? "opacity-50"
         : "hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
     }`,
+  link: (loading: boolean | undefined) =>
+    `inline-flex items-center p-0 border border-transparent text-xs font-medium rounded text-blue-400 ${
+      loading
+        ? "opacity-50"
+        : ""
+  }`
 };
 
 interface ButtonProps {
   children: React.ReactNode
   isLoading?: boolean
   className?: string
-  theme?: 'success' | 'default' | 'error'
+  theme?: 'success' | 'default' | 'error' | 'link'
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
