@@ -2,18 +2,11 @@
 
 ## Instructions
 
-1. There is a bug with the efficiency calculation in the `Vehicles/FuelEntriesController`. You can easily see the
-   exception when you click "Calculate" on one of the vehicles in the UI.
-   Let's fix this bug.
+1. We have been running into some performance issues with the `ReactDebuggingAndPerformance.tsx` page,
+   where re-renders for customers with many vehicles is laggy. To access the "React Page", you can click the "Show React Page" button at the bottom of the main app Index page.
+   
+   In general there are some optimizations and potential fixes that can be made to this page to look out for. However, we are specifically interested in you adding a `windowing` or virtualized list solution to the `ReactDebuggingAndPerformance.tsx` list (the `TopMileageVehicles` component is where the list lives currently). This means that only rows in the scrollable parent that are currently "in view" should be rendered to the DOM/React tree, and things above and below "scroll view" should have a placeholder to retain scroll position and make the scrolling feel natural.
 
-2. Now that you fixed the efficiency calculation in step #1 above, add the following:
-   When a user calculates efficiency, store the values to localstorage and have the `VehicleCard`
-   re-hydrate the value from localstorage, then add a `Recalculate Efficiency` feature for Vehicles where the efficiency has been previously fetched.
+   **Note:** We are looking for your Javascript/React chops here, avoid including any open source libraries to solve this. 
 
-3. Refactor the `VehicleCard` component to make use of a more generic underlying
-   `Card` component.
-
-4. Lastly, we have been running into some performance issues with
-   the `VehiclesIndex` rendering for some customers on older machines. Implement
-   a `windowing` or virtualized list solution to the Vehicle Card list. This means that only the VehicleCards in the active "scroll view" should be rendered to the DOM/React tree, and things above and below "scroll view" should have a placeholder to retain scroll position and make the scrolling feel natural.
-   Note: We are looking for your Javascript chops here, avoid including any open source libraries to solve this.
+2. If you have time, return to the main `VehiclesIndex` page. There is a bug with the efficiency calculation in the `Vehicles/     FuelEntriesController`. You can easily see the exception in the Rails server log when you click a "Calculate" button on one of the vehicles in the UI. Let's fix this bug.

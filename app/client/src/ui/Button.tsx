@@ -19,16 +19,34 @@ const ButtonThemes = {
         ? "opacity-50"
         : "hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
     }`,
+  link: (loading: boolean | undefined) =>
+    `inline-flex items-center p-0 border border-transparent text-xs font-medium rounded text-blue-400 ${
+      loading
+        ? "opacity-50"
+        : ""
+  }`
 };
 
 interface ButtonProps {
   children: React.ReactNode
   isLoading?: boolean
-  theme: 'success' | 'default' | 'error'
+  className?: string
+  theme?: 'success' | 'default' | 'error' | 'link'
   onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
-export const Button = ({ theme = 'default', onClick, children, isLoading }: ButtonProps) => {
+function getClassName(
+  className: string | undefined,
+  theme: ButtonProps['theme'] = "default",
+  isLoading: boolean | undefined
+) {
+  const themeClass = typeof ButtonThemes[theme] == "function"
+    ? ButtonThemes[theme](isLoading)
+    : ""
+  return className ? `${className} ${themeClass}` : themeClass
+}
+
+export const Button = ({ children, className, isLoading, onClick,  theme = 'default' }: ButtonProps) => {
   return (
     <button
       onClick={(event) => {
@@ -37,11 +55,7 @@ export const Button = ({ theme = 'default', onClick, children, isLoading }: Butt
         }
       }}
       type="button"
-      className={
-        typeof ButtonThemes[theme] == "function"
-          ? ButtonThemes[theme](isLoading)
-          : ""
-      }
+      className={getClassName(className, theme, isLoading)}
     >
       {children}
     </button>

@@ -5,18 +5,9 @@ require('dotenv').config()
 const chokidar = require ('chokidar')
 const esbuild = require('esbuild')
 const http = require('http')
-const autoprefixer = require('autoprefixer')
-// const postcss = require('postcss')
 const postCssPlugin = require('@deanc/esbuild-plugin-postcss')
-const postCssFlexbugFixes = require('postcss-flexbugs-fixes')
-const postcssPresetEnv = require('postcss-preset-env')
-const tailwindConfig = require('tailwindcss')(
-  './app/client/javascripts/app/constants/tailwind.config.js'
-)
 
 // plugins
-const ImportGlobPlugin = require('esbuild-plugin-import-glob')
-const sassPlugin = require('esbuild-sass-plugin')
 const customPlugins = require('./config/esbuild/customPlugins')
 
 const esbuildUpdateServerPort = process.env.ESBUILD_UPDATE_SERVER_PORT || '3035'
@@ -53,7 +44,6 @@ const buildConfig = {
     '.json': 'json',
     '.png': 'file',
     '.svg': 'dataurl',
-    // our svgrPlugin and the svg loader conflict, we use a few svg loads in css
     '.ttf': 'file',
     '.woff': 'file'
   },
@@ -64,25 +54,6 @@ const buildConfig = {
   publicPath: '/assets',
   plugins: [
     postCssPlugin(require('./postcss.config')),
-    customPlugins.alienfastI18nPlugin(),
-    ImportGlobPlugin.default(),
-    customPlugins.svgrPlugin({
-      memo: true,
-      ref: true,
-      replaceAttrValues: {
-        '#000': '',
-        '#000000': '',
-        black: ''
-      },
-      svgo: true,
-      svgoConfig: {
-        plugins: [
-          {
-            removeViewBox: false
-          }
-        ]
-      }
-    }),
     customPlugins.cleanup()
   ],
   sourcemap: false,

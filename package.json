@@ -5,33 +5,29 @@
     "build": "node esbuild.js"
   },
   "dependencies": {
-    "@alienfast/i18next-loader": "^2.0.1",
-    "@deanc/esbuild-plugin-postcss": "^1.0.2",
-    "@svgr/core": "^8.0.0",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "chokidar": "^3.5.3",
-    "dotenv": "^16.3.1",
-    "esbuild": "^0.18.15",
-    "esbuild-plugin-import-glob": "^0.1.1",
-    "esbuild-sass-plugin": "^2.10.0",
-    "glob": "^10.3.3",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^1.0.2",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6"
+    "tailwindcss": "^3.3.3"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@deanc/esbuild-plugin-postcss": "^1.0.2",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/postcss7-compat": "^2.1.0",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.14",
     "browserslist": "^4.17.6",
+    "chokidar": "^3.5.3",
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.18.15",
+    "glob": "^10.3.3",
     "postcss": "^8.4.26",
-    "prettier": "^2.2.1"
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.0.0",
+    "prettier": "^2.2.1",
+    "typescript": "^5.1.6"
   }
 }
