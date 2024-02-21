@@ -1,36 +1,12 @@
-/*
- *
- * _________________ READ ME FIRST! __________________
- *
- *
- *
- *
- * We're trying to see what stands out as wrong to you in this file.
- *
- * A few notes:
- * 1. There are various bugs in this file and some things that could be improved.
- * 2. "Why would you do that?" is likely be a valid question for some things! Do them in a
- *    better way, or your way!
- * 3. Some things could be completely unnecessary in this file, so feel free to
- *    remove things as well. We're trying to see what stands out to you as wrong.
- * 4. There may be a helpful hook to use in 'app/client/src/hooks' (also see if there's
- *    anything wrong with the hook).
- */
-
-
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import { Button } from "../ui/Button";
 import { SubHeader } from "../ui/SubHeader";
-import {DebuggingVehicle, fetchVehicles} from "./getVehicles";
-import {useDebouncedFn} from "../hooks/useDebouncedFn";
+import { DebuggingVehicle, fetchVehicles } from "./getVehicles";
 
 interface TopMileageVehiclesProps {
   data: DebuggingVehicle[]
 }
 
-/**
- * Implement windowing on the top 10,000 vehicles list here.
- */
 function TopMileageVehicles({ data }: TopMileageVehiclesProps) {
   return (
     <div>
@@ -60,6 +36,7 @@ function InternalReactDebuggingAndPerformance(props: ReactDebuggingAndPerformanc
   const { data, generateNewData } = props
   const totalMileage = data.map((d) => d.miles).reduce((a, b) => a + b, 0)
   const loadNewData = useCallback(generateNewData, [generateNewData])
+
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -72,19 +49,6 @@ function InternalReactDebuggingAndPerformance(props: ReactDebuggingAndPerformanc
   )
 }
 
-const bgColors = {
-  0: 'bg-red-200',
-  1: 'bg-blue-200',
-  2: 'bg-green-200',
-  3: 'bg-yellow-200',
-  4: 'bg-purple-200'
-}
-
-/**
- * General wrapper to provide various functionality.
- *
- * This page is laggy when changes occur. Why?
- */
 export function ReactDebuggingAndPerformance() {
   const [per, setPer] = useState(5_000_000)
   const [data, setData] = useState<DebuggingVehicle[]>([])
@@ -97,23 +61,11 @@ export function ReactDebuggingAndPerformance() {
     retrieveVehicles()
   }, [per])
 
-  // contrived for rerenders in the parent
-  const colorRef = useRef(0)
-  const [bgColor, setBgColor] = useState<string>(bgColors[0])
-  const updateColor = useDebouncedFn(() => {
-    colorRef.current = colorRef.current + 1
-    // @ts-ignore
-    setBgColor(bgColors[colorRef.current % 5])
-  }, 30_000)
-  useEffect(() => {
-    updateColor()
-  }, [bgColor]);
-
   return (
     <div>
       <SubHeader content={
-          <div className={`${bgColor} mb-4`}>
-            Debugging and Performance
+          <div>
+            React Assessment
           </div>
         }
       />
