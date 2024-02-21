@@ -9,4 +9,6 @@
 
    **Note:** We are looking for your Javascript/React chops here, avoid including any open source libraries to solve this. 
 
-2. If you have time, return to the main `VehiclesIndex` page. There is a bug with the efficiency calculation in the `Vehicles/     FuelEntriesController`. You can easily see the exception in the Rails server log when you click a "Calculate" button on one of the vehicles in the UI. Let's fix this bug.
+2. Return to the main `VehiclesIndex` page. There is a bug with the efficiency calculation in the `Vehicles/FuelEntriesController`. You can easily see the exception in the Rails server log when you click a "Calculate" button on one of the vehicles in the UI. Let's fix this bug.
+
+3. Lastly, refactor `VehicleCard` to extract a more generic `Card` implementation for the `/ui` component library. This will allow us to reuse the card component in other places in the app.
