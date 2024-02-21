@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react'
-import { Button } from "../ui/Button";
-import { SubHeader } from "../ui/SubHeader";
-import { DebuggingVehicle, fetchVehicles } from "./getVehicles";
+import { Button } from "../ui/Button"
+import { SubHeader } from "../ui/SubHeader"
+import { DebuggingVehicle, fetchVehicles } from "./getVehicles"
 
 interface TopMileageVehiclesProps {
   data: DebuggingVehicle[]
@@ -15,7 +15,7 @@ function TopMileageVehicles({ data }: TopMileageVehiclesProps) {
       </div>
       <div className="max-h-64 rounded border border-gray-400 overflow-auto divide-y divide-solid divide-gray-500 font-medium">
         {
-          data.sort((a, b) => b.miles - a.miles).slice(0, 10_000).map((v) => (
+          data.sort((a, b) => b.miles - a.miles).map((v) => (
             <div key={v.id} className="px-2 py-1 flex justify-around">
               <div>Id = {v.id}</div>
               <div>Miles {v.miles}</div>
@@ -50,7 +50,7 @@ function InternalReactDebuggingAndPerformance(props: ReactDebuggingAndPerformanc
 }
 
 export function ReactDebuggingAndPerformance() {
-  const [per, setPer] = useState(5_000_000)
+  const [per, setPer] = useState(10_000)
   const [data, setData] = useState<DebuggingVehicle[]>([])
 
   const retrieveVehicles = useCallback(() => {
