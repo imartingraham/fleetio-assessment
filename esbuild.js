@@ -44,7 +44,6 @@ const buildConfig = {
     '.json': 'json',
     '.png': 'file',
     '.svg': 'dataurl',
-    // our svgrPlugin and the svg loader conflict, we use a few svg loads in css
     '.ttf': 'file',
     '.woff': 'file'
   },
