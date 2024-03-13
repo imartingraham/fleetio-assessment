@@ -32,6 +32,6 @@ that queries the [Fleetio API](https://developer.fleetio.com) for vehicles.
 
 ## Instructions
 
-| Product Engineer | API Engineer | React Engineer |
-| ---------------- | ------------ | -------------- |
-| [Link to Instructions](./docs/product-engineer.md) | [Link to Instructions](./docs/api-engineer.md) | [Link to Instructions](./docs/react-engineer.md) |
+| Product Engineer | API Engineer | React Engineer | Engineering Manager |
+| ---------------- | ------------ | -------------- | ------------------- |
+| [Link to Instructions](./docs/product-engineer.md) | [Link to Instructions](./docs/api-engineer.md) | [Link to Instructions](./docs/react-engineer.md) | [Link to Instructions](./docs/engineering-manager.md) |
