@@ -4,7 +4,7 @@ x-app: &app
   build:
     args:
       RUBY_VERSION: "3.2.1"
-      PG_MAJOR: "12"
+      PG_MAJOR: "17"
       NODE_MAJOR: "18"
       BUNDLER_VERSION: "2.2.22"
     context: .
