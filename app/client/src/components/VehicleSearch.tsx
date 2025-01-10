@@ -26,7 +26,7 @@ export const VehicleSearch = ({onSearch}: VehicleSearchProps) => {
     // one decision that needed to be made here was how many characters should
     // be typed before executing the search function. I've always felt like 3
     // was a standard. I decided to leave that logic to the `onSearch` function
-    // rather than make that disicion here.
+    // rather than make that decision here.
       onSearch(val)
   }, 500), [onSearch])
 

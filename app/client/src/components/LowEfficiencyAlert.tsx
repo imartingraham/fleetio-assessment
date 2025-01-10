@@ -14,8 +14,8 @@ export const LowEfficiencyAlert = () => {
       .then(data => {
         setVehicle(data)
       }).catch(e => {
-        // a production environment we would want to
-        // logging to let us know if this is failing
+        // In a production environment we would want to have
+        // logging in place to let us know if this is failing
         // I feel this is something that could fail silently for
         // the user/visitor since displaying an error message or
         // something similar could be confusing
