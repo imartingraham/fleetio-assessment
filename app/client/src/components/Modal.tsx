@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 type Props = {
-  children: JSX.Element
+  children: JSX.Element[] | JSX.Element | string
   showModal: boolean
   onClose: () => void
 }

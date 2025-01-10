@@ -39,10 +39,16 @@ export const VehiclesIndex = () => {
     }
 
     return Object.keys(vehicles).sort().map(key => {
-      const autos = vehicles[key].map(vehicle => <VehicleCard vehicle={vehicle} key={vehicle.id} />)
+      const autos = vehicles[key].map(vehicle => (
+        <li className="relative" key={vehicle.id}>
+          <VehicleCard vehicle={vehicle} />
+        </li>))
       return (
         <div key={key}>
-          <h2 className="text-2xl font-bold">{key}</h2>
+          <h2 className="text-2xl font-bold mb-3">
+            <div className="bg-white z-10 relative inline-block pr-3">{key}</div>
+            <hr className="border-top-2 relative bottom-4" />
+          </h2>
           <ul
             role="list"
             className="grid grid-cols-3 gap-x-4 gap-y-8 mb-10"

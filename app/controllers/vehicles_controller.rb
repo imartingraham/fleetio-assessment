@@ -3,7 +3,7 @@ class VehiclesController < ApplicationController
     term = search_params.dig(:search)
     @vehicles = Vehicle.order(category: :asc)
     if term.present?
-      @vehicles = @vehicles.where("name LIKE ?", "%#{term}%")
+      @vehicles = @vehicles.where("name ILIKE ?", "%#{term}%")
     end
   end
 
