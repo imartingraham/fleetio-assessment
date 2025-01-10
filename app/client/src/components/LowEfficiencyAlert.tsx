@@ -20,7 +20,7 @@ export const LowEfficiencyAlert = () => {
         // the user/visitor since displaying an error message or
         // something similar could be confusing
         console.error(e.message)
-      }
+      })
     }
   }, [])
 
