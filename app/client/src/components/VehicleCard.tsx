@@ -26,7 +26,7 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
         setEfficiency(data.efficiency.toFixed(2))
         setLoading(false)
       })
-      .catch(() => {
+      .catch((e) => {
         toast.error("Oops, something went wrong!")
         setLoading(false)
       })

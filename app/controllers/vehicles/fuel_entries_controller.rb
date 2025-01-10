@@ -3,21 +3,14 @@ module Vehicles
     before_action(:set_vehicle)
 
     def index
-      fuel_entries = HTTP.headers(
-        authorization: "Token #{Rails.application.credentials.dig(:fleetio, :api_token)}",
-        "account-token": Rails.application.credentials.dig(:fleetio, :account_token)
-      ).get(
-        "https://secure.fleetio.com/api/v1/fuel_entries",
-        params: {
-          "q[vehicle_id_eq]": @vehicle.external_id,
-          "q[s]": "created_at+desc"
-        }
-      ).parse
-
-      usage = fuel_entries.sum(0) { |fuel_entry| fuel_entry["usage_in_mi"] }
-      gallons = fuel_entries.sum(0) { |fuel_entry| fuel_entry["us_gallons"] }
-
-      render json: { efficiency: usage.to_f / gallons }
+      # I created a rake task to populate the fuel efficiency values which 
+      # would run on a cron or be called when new vehicles are added. I'm leaving this
+      # here to allow us to catch any that may be missed.
+      if @vehicle.fuel_efficiency.blank?
+        efficiency = Fleetio::FuelEfficiencyService.call(@vehicle)
+        @vehicle.update(fuel_efficiency: efficiency)
+      end
+      render json: { efficiency:  @vehicle.fuel_efficiency.to_f}
     end
 
     private
