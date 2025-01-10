@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+import toast from "react-hot-toast"
+
 import {VehicleSearch} from "../../components/VehicleSearch"
 import { VehicleIndexSkeleton } from "../../components/VehicleIndexSkeleton"
 import { VehicleCard } from "../../components/VehicleCard"
@@ -13,6 +15,8 @@ export const VehiclesIndex = () => {
 
   const onSearch = (text: string) => {
     let path = "/vehicles"
+    // We only want to send the search when we have 3 or more characters. 
+    // Otherwise we want to return full results.
     if(text.length >= 3){
       path += "?" + new URLSearchParams({search: text})
     }
@@ -29,7 +33,11 @@ export const VehiclesIndex = () => {
         }, {})
         setVehicles(vehiclesData)
         setLoading(false)
+      }).catch(() => {
+        toast.error("Oops, something went wrong!")
+        setLoading(false)
       })
+
   }
   const groupedVehicles = (vehicles: Record<string, Vehicle[]>) => {
     if(!Object.keys(vehicles).length){

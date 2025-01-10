@@ -6,6 +6,10 @@ module Fleetio::Api
     DELETE = "DELETE"
     API_VERSION = 'v1'
     BASE_URL = 'https://secure.fleetio.com/api'
+    
+    # While the assignment only uses a get request for the fuel entries
+    # Having a base class that handles all requests is something that would
+    # be built in a larger app.
     class << self
       def post(data:)
         make_request(method: POST, data:)

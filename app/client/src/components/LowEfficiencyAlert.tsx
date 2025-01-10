@@ -13,7 +13,14 @@ export const LowEfficiencyAlert = () => {
       .then((response) => response.json())
       .then(data => {
         setVehicle(data)
-      })
+      }).catch(e => {
+        // a production environment we would want to
+        // logging to let us know if this is failing
+        // I feel this is something that could fail silently for
+        // the user/visitor since displaying an error message or
+        // something similar could be confusing
+        console.error(e.message)
+      }
     }
   }, [])
 
