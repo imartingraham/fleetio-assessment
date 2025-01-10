@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState, useCallback} from "react"
 
 
 const debounce = (callback: Function, wait: number) => {
@@ -16,7 +16,7 @@ interface VehicleSearchProps {
 }
 
 export const VehicleSearch = ({onSearch}: VehicleSearchProps) => {
-  const [value, setValue] = useState<string>('')
+  const [value, setValue] = useState<string>("")
   const debouncedOnSearch = useCallback(debounce((val: string) => {
       onSearch(val)
   }, 500), [onSearch])

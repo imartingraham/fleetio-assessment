@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import {Vehicle} from '../types/models/Vehicle'
-import { VehicleCard } from './VehicleCard'
-import { useLocalStorage } from '../hooks/useLocalStorage'
-import { Modal } from './Modal'
+import React, {useState, useEffect} from "react"
+import {Vehicle} from "../types/models/Vehicle"
+import { VehicleCard } from "./VehicleCard"
+import { useLocalStorage } from "../hooks/useLocalStorage"
+import { Modal } from "./Modal"
 
 export const LowEfficiencyAlert = () => {
   const [showLowestEfficient, setShowLowestEfficient] = useLocalStorage("showLowestEfficient", true)

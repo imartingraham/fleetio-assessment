@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Modal } from '../../components/Modal'
-import {VehicleSearch} from '../../components/VehicleSearch'
+import {VehicleSearch} from "../../components/VehicleSearch"
 import { VehicleIndexSkeleton } from "../../components/VehicleIndexSkeleton"
 import { VehicleCard } from "../../components/VehicleCard"
 import {Vehicle} from "../../types/models/Vehicle"
@@ -8,7 +7,6 @@ import {Vehicle} from "../../types/models/Vehicle"
 export const VehiclesIndex = () => {
   const [loading, setLoading] = useState(false)
   const [vehicles, setVehicles] = useState<Record<string, Vehicle[]>>({})
-
   useEffect(() => {
     onSearch("")
   }, [])
@@ -43,6 +41,7 @@ export const VehiclesIndex = () => {
         <li className="relative" key={vehicle.id}>
           <VehicleCard vehicle={vehicle} />
         </li>))
+
       return (
         <div key={key}>
           <h2 className="text-2xl font-bold mb-3">

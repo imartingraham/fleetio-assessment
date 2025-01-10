@@ -5,7 +5,7 @@ import { Button } from "../ui/Button"
 import { Vehicle } from "../types/models/Vehicle"
 
 const cardItemSize = {
-  width: 'auto',
+  width: "auto",
   height: 192
 }
 
