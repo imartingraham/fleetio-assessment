@@ -4,7 +4,7 @@ namespace :fuel_efficiency do
 
     vehicles.each do |v|
       efficiency = Fleetio::FuelEfficiencyService.call(v)
-      v.update(fuel_efficiency: efficiency)
+      v.update(fuel_efficiency: efficiency) if efficiency.present?
     end
   end
 end

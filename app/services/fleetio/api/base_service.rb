@@ -46,7 +46,7 @@ module Fleetio::Api
         if resp.status.success?
           return resp.to_s
         else
-          raise StandardError.new("Unexpected status code #{resp.code}")
+          raise HTTP::ResponseError.new("Unexpected status code #{resp.code}")
         end
       end
 

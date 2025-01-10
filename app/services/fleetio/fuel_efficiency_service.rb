@@ -13,7 +13,6 @@ module Fleetio
           Rails.logger(e)
           return nil
         end
-
       end
     end
   end
