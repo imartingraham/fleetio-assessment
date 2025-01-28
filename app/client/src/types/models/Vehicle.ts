@@ -4,4 +4,5 @@ export interface Vehicle {
   id: number
   image_url: string
   name: string
+  fuel_efficiency?: number
 }

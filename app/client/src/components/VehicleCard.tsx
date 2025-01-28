@@ -5,7 +5,7 @@ import { Button } from "../ui/Button"
 import { Vehicle } from "../types/models/Vehicle"
 
 const cardItemSize = {
-  width: 315,
+  width: "auto",
   height: 192
 }
 
@@ -15,7 +15,7 @@ interface VehicleCardProps {
 
 export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   const [loading, setLoading] = useState(false);
-  const [efficiency, setEfficiency] = useState();
+  const [efficiency, setEfficiency] = useState(vehicle.fuel_efficiency?.toFixed(2));
 
   const calculateEfficiency = useCallback(() => {
     setLoading(true);
@@ -33,7 +33,7 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   }, [vehicle])
 
   return (
-    <li className="relative" style={{ maxWidth: cardItemSize.width }}>
+    <>
       <div
         style={cardItemSize}
         className="flex items-center focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 group rounded-lg overflow-hidden bg-transparent"
@@ -86,6 +86,6 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           </Button>
         )}
       </div>
-    </li>
+    </>
   )
 }
